@@ -1,23 +1,22 @@
 {
-  "name": "operations_discord_bot",
-  "version": "0.0.1",
-  "description": "Rusty Operations Discord Bot v3",
-  "main": "index.ts",
-  "type": "module",
-  "scripts": {
-    "start": "npx tsc && node dist/index.js && exit 1"
+  "dependencies": {
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.4.5"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/joshjh2002/Operations_Discord_Bot.git"
-  },
-  "author": "Josh Helman",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/joshjh2002/Operations_Discord_Bot/issues"
-  },
-  "homepage": "https://github.com/joshjh2002/Operations_Discord_Bot#readme",
   "devDependencies": {
-    "typescript": "^5.4.5"
-  }
+    "@types/node": "^20.12.7",
+    "tsx": "^4.7.2"
+  },
+  "name": "operations_discord_bot",
+  "description": "",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
