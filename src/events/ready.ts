@@ -5,7 +5,7 @@ const event: BotCommand = {
   name: "ready",
   once: true,
   execute: (client: Client) => {
-    console.log(`💪 Logged in as ${client.user?.tag}`);
+    console.log(`Logged in as ${client.user?.tag}`);
   },
 };
 

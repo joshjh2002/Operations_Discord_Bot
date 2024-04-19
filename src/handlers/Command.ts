@@ -28,7 +28,7 @@ module.exports = (client: Client) => {
       body: slashCommands.map((command) => command.toJSON()),
     })
     .then((data: any) => {
-      console.log(`🔥 Successfully loaded ${data.length} slash command(s)`);
+      console.log(`Successfully loaded ${data.length} slash command(s)`);
     })
     .catch((e) => {
       console.log(e);
