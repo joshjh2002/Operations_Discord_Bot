@@ -12,9 +12,9 @@
   "version": "1.0.0",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "tsx watch src/index.ts",
     "build": "tsc",
-    "start": "node ."
+    "start": "node .",
+    "setup": "npm install && npm run build && npm run start"
   },
   "keywords": [],
   "author": "",
