@@ -1,7 +1,7 @@
 import { Client } from "discord.js";
-import { BotEvent } from "../types";
+import { BotCommand } from "../types";
 
-const event: BotEvent = {
+const event: BotCommand = {
   name: "ready",
   once: true,
   execute: (client: Client) => {
