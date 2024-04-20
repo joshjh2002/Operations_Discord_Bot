@@ -1,4 +1,9 @@
 import { Client, GatewayIntentBits, Collection } from "discord.js";
+import { SlashCommand } from "./types";
+import { config } from "dotenv";
+import { readdirSync } from "fs";
+import { join } from "path";
+config();
 
 const {
   Guilds,
@@ -17,12 +22,6 @@ const client = new Client({
     GuildMessageReactions,
   ],
 });
-
-import { SlashCommand } from "./types";
-import { config } from "dotenv";
-import { readdirSync } from "fs";
-import { join } from "path";
-config();
 
 client.slashCommands = new Collection<string, SlashCommand>();
 client.cooldowns = new Collection<string, number>();

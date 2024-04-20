@@ -3,7 +3,6 @@ import { REST } from "@discordjs/rest";
 import { readdirSync } from "fs";
 import { join } from "path";
 import { SlashCommand } from "../types";
-
 import { config } from "dotenv";
 config();
 

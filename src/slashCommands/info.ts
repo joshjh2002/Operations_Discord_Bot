@@ -1,8 +1,7 @@
 import { EmbedBuilder, SlashCommandBuilder, GuildMember } from "discord.js";
 import { SlashCommand } from "../types";
-import moment from "moment";
-
 import { colours } from "../config";
+import moment from "moment";
 
 const command: SlashCommand = {
   command: new SlashCommandBuilder()
