@@ -1,9 +1,23 @@
 import { Client, GatewayIntentBits, Collection } from "discord.js";
-const { Guilds, MessageContent, GuildMessages, GuildMembers } =
-  GatewayIntentBits;
+
+const {
+  Guilds,
+  MessageContent,
+  GuildMessages,
+  GuildMembers,
+  GuildMessageReactions,
+} = GatewayIntentBits;
+
 const client = new Client({
-  intents: [Guilds, MessageContent, GuildMessages, GuildMembers],
+  intents: [
+    Guilds,
+    MessageContent,
+    GuildMessages,
+    GuildMembers,
+    GuildMessageReactions,
+  ],
 });
+
 import { SlashCommand } from "./types";
 import { config } from "dotenv";
 import { readdirSync } from "fs";
@@ -20,3 +34,9 @@ readdirSync(handlersDir).forEach((handler) => {
 });
 
 client.login(process.env.DISCORD_TOKEN);
+
+import { colours, roles } from "./config";
+import { setDocument } from "./firebase/functions";
+
+setDocument("config", "colours", colours);
+setDocument("config", "roles", roles);
