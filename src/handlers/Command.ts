@@ -23,36 +23,55 @@ module.exports = async (client: Client) => {
     process.env.DISCORD_TOKEN || ""
   );
 
-  // Delete existing commands
-  rest
-    .put(
-      Routes.applicationGuildCommands(
-        process.env.CLIENT_ID || "",
-        process.env.GUILD_ID || ""
-      ),
-      {
-        body: [],
-      }
-    )
-    .then(() => {
-      rest
-        .put(
-          Routes.applicationGuildCommands(
-            process.env.CLIENT_ID || "",
-            process.env.GUILD_ID || ""
-          ),
-          {
-            body: slashCommands.map((command) => command.toJSON()),
-          }
-        )
-        .then((data: any) => {
-          console.log(`Successfully loaded ${data.length} slash command(s)`);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    })
-    .catch((e) => {
-      console.log(e);
-    });
+  const clean = false;
+
+  if (clean)
+    rest
+      .put(
+        Routes.applicationGuildCommands(
+          process.env.CLIENT_ID || "",
+          process.env.GUILD_ID || ""
+        ),
+        {
+          body: [],
+        }
+      )
+      .then(() => {
+        rest
+          .put(
+            Routes.applicationGuildCommands(
+              process.env.CLIENT_ID || "",
+              process.env.GUILD_ID || ""
+            ),
+            {
+              body: slashCommands.map((command) => command.toJSON()),
+            }
+          )
+          .then((data: any) => {
+            console.log(`Successfully loaded ${data.length} slash command(s)`);
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  else
+    rest
+      .put(
+        Routes.applicationGuildCommands(
+          process.env.CLIENT_ID || "",
+          process.env.GUILD_ID || ""
+        ),
+        {
+          body: slashCommands.map((command) => command.toJSON()),
+        }
+      )
+      .then((data: any) => {
+        console.log(`Successfully loaded ${data.length} slash command(s)`);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
 };

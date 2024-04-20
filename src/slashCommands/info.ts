@@ -1,41 +1,69 @@
 import { EmbedBuilder, SlashCommandBuilder, GuildMember } from "discord.js";
 import { SlashCommand } from "../types";
+import moment from "moment";
+
+import { colours } from "../config";
 
 const command: SlashCommand = {
   command: new SlashCommandBuilder()
     .setName("info")
-    .setDescription("DM the user who ran the command."),
+    .setDescription("DM the user who ran the command.")
+    .addUserOption((option) =>
+      option
+        .setName("user")
+        .setDescription("The user to get information about.")
+    ) as SlashCommandBuilder,
   execute: async (interaction) => {
-    const memberOfGuild = await interaction.guild?.members.fetch(
-      interaction.user.id
-    );
+    const targetUser = interaction.options.getUser("user") || interaction.user;
+
+    const memberOfGuild = await interaction.guild?.members.fetch(targetUser.id);
 
     const embed = new EmbedBuilder()
       .setTitle("User Information")
       .addFields(
         {
-          name: "Username",
-          value: interaction.user.username,
+          name: "Username:",
+          value: targetUser.username,
+          inline: true,
         },
         {
-          name: "User ID",
-          value: interaction.user.id,
+          name: "User ID:",
+          value: targetUser.id,
+          inline: true,
         },
         {
-          name: "Created At",
-          value: interaction.user.createdAt.toString() || "Not Found",
+          name: "Created At:",
+          value:
+            moment(targetUser.createdTimestamp).format("DD/MM/YY") ||
+            "Not Found",
+          inline: true,
         },
         {
-          name: "Date Joined",
-          value: memberOfGuild?.joinedAt?.toString() || "Not Found",
+          name: "Date Joined:",
+          value:
+            moment(memberOfGuild?.joinedTimestamp).format("DD/MM/YY") ||
+            "Not Found",
+          inline: true,
+        },
+        {
+          name: "Roles",
+          value:
+            memberOfGuild?.roles.cache
+              .filter((role) => role.name !== "@everyone")
+              .map((role) => `<@&${role.id}>`)
+              .join(", ") || "No roles",
         }
       )
-      .setTimestamp();
+      .setTimestamp()
+      .setAuthor({
+        name: targetUser.username,
+        url: targetUser.displayAvatarURL(),
+        iconURL: targetUser.displayAvatarURL(),
+      })
+      .setColor(colours.log);
 
     interaction.reply({
-      content: `Here is your information:`,
       embeds: [embed],
-      ephemeral: true,
     });
   },
   cooldown: 10,
