@@ -34,9 +34,3 @@ readdirSync(handlersDir).forEach((handler) => {
 });
 
 client.login(process.env.DISCORD_TOKEN);
-
-import { colours, roles } from "./config";
-import { setDocument } from "./firebase/functions";
-
-setDocument("config", "colours", colours);
-setDocument("config", "roles", roles);
