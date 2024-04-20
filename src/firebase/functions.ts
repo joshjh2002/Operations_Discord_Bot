@@ -1,5 +1,5 @@
 import { db } from "../firebase/firebaseInit";
-import { getDoc, setDoc, doc, updateDoc, collection } from "firebase/firestore";
+import { getDoc, setDoc, doc, updateDoc } from "firebase/firestore";
 
 export const getDocument = async (collection: string, document: string) => {
   const data = doc(db, collection, document);
