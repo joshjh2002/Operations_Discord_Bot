@@ -1,7 +1,11 @@
+import { log } from "console";
+
 export const colours = {
   default: 13724201,
   log: 3847248,
 };
+
+export const channels = { log: "697761452483805295" };
 
 export const roles = {
   region_roles: {
