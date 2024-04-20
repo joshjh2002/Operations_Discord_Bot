@@ -7,7 +7,7 @@ import { SlashCommand } from "../types";
 import { config } from "dotenv";
 config();
 
-module.exports = (client: Client) => {
+module.exports = async (client: Client) => {
   const slashCommands: SlashCommandBuilder[] = [];
 
   let slashCommandsDir = join(__dirname, "../slashCommands");
@@ -23,12 +23,34 @@ module.exports = (client: Client) => {
     process.env.DISCORD_TOKEN || ""
   );
 
+  // Delete existing commands
   rest
-    .put(Routes.applicationCommands(process.env.CLIENT_ID || ""), {
-      body: slashCommands.map((command) => command.toJSON()),
-    })
-    .then((data: any) => {
-      console.log(`Successfully loaded ${data.length} slash command(s)`);
+    .put(
+      Routes.applicationGuildCommands(
+        process.env.CLIENT_ID || "",
+        process.env.GUILD_ID || ""
+      ),
+      {
+        body: [],
+      }
+    )
+    .then(() => {
+      rest
+        .put(
+          Routes.applicationGuildCommands(
+            process.env.CLIENT_ID || "",
+            process.env.GUILD_ID || ""
+          ),
+          {
+            body: slashCommands.map((command) => command.toJSON()),
+          }
+        )
+        .then((data: any) => {
+          console.log(`Successfully loaded ${data.length} slash command(s)`);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     })
     .catch((e) => {
       console.log(e);
