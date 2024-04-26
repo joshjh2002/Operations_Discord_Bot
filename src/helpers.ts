@@ -1,9 +1,9 @@
 import { Client, EmbedBuilder } from "discord.js";
-import { channels, colours, roles } from "./config";
+import { channels, colours, reaction_roles } from "./config";
 
 export const getRole = (emoji_id: string) => {
   let role_id;
-  Object.values(roles).find((role) => {
+  Object.values(reaction_roles).find((role) => {
     return Object.values(role.roles).find((role) => {
       if (role.role_emoji.id === emoji_id) role_id = role.role_id;
     });

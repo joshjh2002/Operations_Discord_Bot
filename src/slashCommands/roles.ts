@@ -1,16 +1,21 @@
-import { EmbedBuilder, SlashCommandBuilder } from "discord.js";
+import {
+  EmbedBuilder,
+  PermissionFlagsBits,
+  SlashCommandBuilder,
+} from "discord.js";
 import { SlashCommand } from "../types";
-import { roles } from "../config";
+import { reaction_roles } from "../config";
 import { setRecord } from "../firebase/functions";
 
 const command: SlashCommand = {
   command: new SlashCommandBuilder()
     .setName("roles")
-    .setDescription("Shows the reaction roles embed."),
+    .setDescription("Shows the reaction roles embed.")
+    .setDefaultMemberPermissions(PermissionFlagsBits.ManageRoles),
   execute: async (interaction) => {
     const channel = interaction.channel;
 
-    Object.entries(roles).forEach(([key, value]) => {
+    Object.entries(reaction_roles).forEach(([key, value]) => {
       const embed = new EmbedBuilder()
         .setTitle(value.metadata.name)
         .setColor(value.metadata.color);

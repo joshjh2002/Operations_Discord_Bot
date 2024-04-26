@@ -13,7 +13,7 @@ export const channels = {
 
 export const staff = "1124283935195672616";
 
-export const roles = {
+export const reaction_roles = {
   region_roles: {
     metadata: {
       name: "Region Roles",
