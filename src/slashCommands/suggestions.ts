@@ -7,7 +7,6 @@ import {
   ModalBuilder,
   TextInputBuilder,
   TextInputStyle,
-  PermissionFlagsBits,
 } from "discord.js";
 import { SlashCommand } from "../types";
 import { colours, channels, staff } from "../config";
@@ -17,7 +16,7 @@ import { setRecord } from "../firebase/functions";
 const command: SlashCommand = {
   command: new SlashCommandBuilder()
     .setName("suggestions")
-    .setDescription("Shows the suggestions embed."),
+    .setDescription("Suggestion Management."),
   execute: async (interaction) => {
     const button = new ButtonBuilder()
       .setCustomId("suggestions")
