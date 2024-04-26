@@ -2,6 +2,11 @@ import { ChatInputCommandInteraction, EmbedBuilder } from "discord.js";
 import { getRecord, setRecord } from "../../firebase/functions";
 import { channels, colours, staff } from "../../config";
 
+/**
+ * Approves a suggestion.
+ *
+ * @param interaction - The interaction object representing the command interaction.
+ */
 export const approveSuggestion = async (
   interaction: ChatInputCommandInteraction
 ) => {

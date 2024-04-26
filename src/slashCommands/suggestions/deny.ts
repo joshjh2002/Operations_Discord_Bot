@@ -2,6 +2,10 @@ import { ChatInputCommandInteraction, EmbedBuilder } from "discord.js";
 import { getRecord, setRecord } from "../../firebase/functions";
 import { channels, colours, staff } from "../../config";
 
+/**
+ * Denies a suggestion.
+ * @param interaction - The interaction object representing the command interaction.
+ */
 export const denySuggestion = async (
   interaction: ChatInputCommandInteraction
 ) => {
