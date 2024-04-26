@@ -68,6 +68,20 @@ const event: BotCommand = {
       } catch (error) {
         console.error(error);
       }
+    } else if (interaction.isButton()) {
+      const command = interaction.client.slashCommands.get(
+        interaction.customId
+      );
+      if (!command) {
+        console.error(`No command matching ${interaction.customId} was found.`);
+        return;
+      }
+      try {
+        if (!command.button) return;
+        command.button(interaction);
+      } catch (error) {
+        console.error(error);
+      }
     }
   },
 };

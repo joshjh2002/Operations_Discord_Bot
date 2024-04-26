@@ -3,7 +3,15 @@ export const colours = {
   log: 3847248,
 };
 
-export const channels = { log: "697761452483805295" };
+export const channels = {
+  log: "697761452483805295",
+  suggestions: {
+    inProgress: "1106656849534656565",
+    implemented: "1106656962734735410",
+  },
+};
+
+export const staff = "1124283935195672616";
 
 export const roles = {
   region_roles: {

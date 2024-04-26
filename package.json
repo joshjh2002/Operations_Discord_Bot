@@ -3,10 +3,12 @@
     "discord.js": "^14.14.1",
     "dotenv": "^16.4.5",
     "firebase": "^10.11.0",
-    "moment": "^2.30.1"
+    "moment": "^2.30.1",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/node": "^20.12.7",
+    "@types/uuid": "^9.0.8",
     "tsx": "^4.7.2"
   },
   "name": "operations_discord_bot",
